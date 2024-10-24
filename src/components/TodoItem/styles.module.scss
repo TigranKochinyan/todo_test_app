@@ -1,0 +1,25 @@
+.root {
+  min-height: 75px;
+  background-color: #15101c;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9e78cf;
+  padding: 0 22px;
+
+  .actions {
+    display: flex;
+    gap: 10px;
+
+    .icon {
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: #0a090c;
+      }
+    }
+  }
+}
