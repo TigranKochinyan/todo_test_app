@@ -28,7 +28,9 @@
     "test": "react-scripts test",
     "test-coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "prettier": "3.3.3",
     "ts-jest": "^29.2.5"
   }
