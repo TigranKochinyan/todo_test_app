@@ -23,8 +23,15 @@ const initialTodos: Todo[] = [
 ];
 
 function App() {
-  const { todos, handleUpdateStatus, handleAddTodo, handleDelete } =
-    useTodos(initialTodos);
+  const {
+    todos,
+    filter,
+    handleUpdateStatus,
+    handleAddTodo,
+    handleDelete,
+    handleClearCompleted,
+    handleChangeFilter,
+  } = useTodos(initialTodos);
 
   return (
     <div className="App">
@@ -34,6 +41,9 @@ function App() {
         onAdd={handleAddTodo}
         onChangeStatus={handleUpdateStatus}
         onDelete={handleDelete}
+        onClearCompleted={handleClearCompleted}
+        onChangeFilter={handleChangeFilter}
+        filter={filter}
         todos={todos}
       />
     </div>

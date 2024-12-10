@@ -8,6 +8,11 @@
   color: #9e78cf;
   padding: 0 22px;
 
+  del {
+    color: #fafafa;
+    text-decoration-style: double;
+  }
+
   .actions {
     display: flex;
     gap: 10px;

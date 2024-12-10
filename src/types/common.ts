@@ -8,3 +8,5 @@ export type Todo = {
   title: string;
   status: TodoStatus;
 };
+
+export type FilterType = 'All' | 'Completed' | 'Active';

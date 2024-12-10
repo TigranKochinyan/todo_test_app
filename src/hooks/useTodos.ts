@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Todo, TodoStatus } from "../types/common";
+import { FilterType, Todo, TodoStatus } from "../types/common";
 import { generateId } from "../utils/generateId";
 
 export const useTodos = (initData: Todo[]) => {
   const [todos, setTodos] = useState<Todo[]>(initData);
+  const [filter, setFilter] = useState<FilterType>("All");
+
 
   const handleAddTodo = (title: string) => {
     const newTodo: Todo = {
@@ -11,7 +13,7 @@ export const useTodos = (initData: Todo[]) => {
       status: TodoStatus.ACTIVE,
       id: generateId(),
     };
-    setTodos([...todos, newTodo]);
+    setTodos([newTodo, ...todos]);
   };
 
   const handleUpdateStatus = (id: string, status: TodoStatus) => {
@@ -33,10 +35,22 @@ export const useTodos = (initData: Todo[]) => {
     setTodos(updatedList);
   };
 
+  const handleClearCompleted = () => {
+    const updatedList = todos.filter((todo) => todo.status !== TodoStatus.COMPLETED);
+    setTodos(updatedList);
+  }
+
+  const handleChangeFilter = (filter: FilterType) => {
+    setFilter(filter);
+  }
+
   return {
+    todos,
+    filter,
     handleAddTodo,
     handleUpdateStatus,
     handleDelete,
-    todos,
+    handleClearCompleted,
+    handleChangeFilter,
   };
 };

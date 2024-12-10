@@ -5,4 +5,10 @@
   padding: 20px 15px;
   border-radius: 10px;
   margin: 0 auto;
+
+
+  .todosWrapper {
+    max-height: 60vh;
+    overflow: auto;
+  }
 }

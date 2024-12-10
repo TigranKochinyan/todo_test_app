@@ -11,16 +11,59 @@ describe("TodoCreator Component", () => {
   test("test: renders ListTodo with empty todos", () => {
     render(
       <ListTodo
+        todos={[]}
+        filter="Completed"
         onAdd={() => {}}
         onDelete={() => {}}
-        todos={[]}
         onChangeStatus={() => {}}
+        onClearCompleted={() => {}}
+        onChangeFilter={() => {}}
       />,
     );
 
-    const emptyText = screen.getByText(/Tasks to do - 0/i);
+    const emptyText = screen.getByText(/0 items left/i);
 
     expect(emptyText).toBeInTheDocument();
+  });
+
+  test("test: renders ListTodo with active filter", () => {
+    render(
+      <ListTodo
+        todos={[]}
+        filter="Active"
+        onAdd={() => {}}
+        onDelete={() => {}}
+        onChangeStatus={() => {}}
+        onClearCompleted={() => {}}
+        onChangeFilter={() => {}}
+      />,
+    );
+
+    const emptyText = screen.getByText(/0 items left/i);
+
+    expect(emptyText).toBeInTheDocument();
+  });
+
+  test("test: clearCompleted function", () => {
+    const mockClearCompleted = jest.fn();
+
+    render(
+      <ListTodo
+        todos={[]}
+        filter="Active"
+        onAdd={() => {}}
+        onDelete={() => {}}
+        onChangeStatus={() => {}}
+        onClearCompleted={mockClearCompleted}
+        onChangeFilter={() => {}}
+      />,
+    );
+
+    const clearCompletedButton = screen.getByTestId("clearCompletedButton");
+
+    fireEvent.click(clearCompletedButton);
+
+    expect(mockClearCompleted).toHaveBeenCalledTimes(1);
   });
 
   test("test: delete todo", () => {
@@ -28,10 +71,13 @@ describe("TodoCreator Component", () => {
 
     render(
       <ListTodo
+        todos={mockTodos}
+        filter="Completed"
         onAdd={() => {}}
         onDelete={mockOnDelete}
-        todos={mockTodos}
         onChangeStatus={() => {}}
+        onClearCompleted={() => {}}
+        onChangeFilter={() => {}}
       />,
     );
 
@@ -47,10 +93,13 @@ describe("TodoCreator Component", () => {
 
     render(
       <ListTodo
+        todos={mockTodos}
+        filter="Completed"
         onAdd={() => {}}
         onDelete={() => {}}
-        todos={mockTodos}
         onChangeStatus={mockOnChangeStatus}
+        onClearCompleted={() => {}}
+        onChangeFilter={() => {}}
       />,
     );
 
@@ -69,9 +118,12 @@ describe("TodoCreator Component", () => {
     render(
       <ListTodo
         onAdd={mockOnAdd}
+        filter="Completed"
         onDelete={() => {}}
         todos={mockTodos}
+        onClearCompleted={() => {}}
         onChangeStatus={() => {}}
+        onChangeFilter={() => {}}
       />,
     );
 
