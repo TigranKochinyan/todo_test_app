@@ -6,9 +6,14 @@
   border-radius: 10px;
   margin: 0 auto;
 
+  @media screen and (max-width: 900px) {
+    margin: 0 10px;
+  }
+
 
   .todosWrapper {
     max-height: 60vh;
     overflow: auto;
+    min-height: 300px;
   }
 }
